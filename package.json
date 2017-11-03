@@ -4,6 +4,7 @@
   "description": "an application to host donations for candidates",
   "main": "index.js",
   "scripts": {
+    "start":"node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
