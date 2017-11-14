@@ -6,7 +6,7 @@ const Joi = require('joi');
 exports.main = {
   auth: false,
   handler: function (request, reply) {
-    reply.view('main', {title: 'Welcome to Donations'});
+    reply.view('main', {title: 'Welcome to Twitter'});
   },
 
 };
@@ -15,7 +15,7 @@ exports.signup = {
 
   auth: false,
   handler: function (request, reply) {
-    reply.view('signup', { title: 'Sign up for Donations'});
+    reply.view('signup', { title: 'Sign up'});
   },
 
 };
@@ -24,7 +24,7 @@ exports.login = {
 
   auth: false,
   handler: function (request, reply) {
-    reply.view('login', { title: 'Login to Donations' });
+    reply.view('login', { title: 'Login to Tweet' });
   },
 
 };
@@ -67,7 +67,7 @@ exports.register = {
 exports.authenticate = {
   auth: false,
 
-  validate: {
+  validate: { //validate input errors (Blank fields or Email formatting)
     options: {
       abortEarly: false,
     },
@@ -94,7 +94,7 @@ exports.authenticate = {
         });
         reply.redirect('/home');
       } else {
-        reply.redirect('/signup');
+        reply.redirect('signup');
       }
     }).catch(err => {
       reply.redirect('/');

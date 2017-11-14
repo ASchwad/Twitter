@@ -1,0 +1,44 @@
+{
+  "users": {
+    "_model": "User",
+    "homer": {
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "password": "secret"
+    },
+    "marge": {
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "password": "secret"
+    },
+    "bart": {
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "password": "secret"
+    }
+  },
+  "tweets": {
+    "_model": "Tweet",
+    "one": {
+      "timeUI": "05/03/2013",
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "tweetText": "LOOOOOL"
+    },
+    "two": {
+      "timeUI": "07/05/2015",
+      "firstName": "Simon",
+      "lastName": "Gerber",
+      "tweetText": "Pls"
+    },
+    "three": {
+      "timeUI": "03/01/2016",
+      "firstName": "Hans",
+      "lastName": "Dampf",
+      "tweetText": "asdfasdf"
+    }
+  }
+}

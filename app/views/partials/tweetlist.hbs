@@ -1,0 +1,29 @@
+<section class="ui raised segment">
+    <div class="ui grid">
+        <aside class="ui five wide column"></aside>
+        <aside class="ui six wide column">
+        {{#each tweets}}
+            <section class="ui raised segment">
+                <form id="dT" action="/timeline" method="POST">
+                <div class="ui grid">
+                    <aside class="ui twelve wide column">{{firstName}} {{lastName}}</aside>
+                    <aside class="ui one wide column">{{timeUI}}</aside>
+                <p></p>
+                </div>
+                <p></p>
+                <div class="ui grid">
+                    <aside class="ui twelve wide column">{{tweetText}}</aside>
+                    <aside class="ui three wide column">
+                        <button class="ui button">
+                        <i class="trash icon"></i>
+                        </button>
+                    </aside>
+                    <input type="hidden" value={{_id}} name="Object_id" />
+                </div>
+                </form>
+            </section>
+        {{/each}}
+        </aside>
+        <aside class="ui five wide column"></aside>
+    </div>
+</section>

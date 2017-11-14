@@ -1,5 +1,5 @@
 const Accounts = require('./app/controllers/accounts');
-const Donations = require('./app/controllers/donations');
+const Tweets = require('./app/controllers/tweets');
 const Assets = require('./app/controllers/assets');
 
 module.exports = [
@@ -13,9 +13,10 @@ module.exports = [
   { method: 'GET', path: '/settings', config: Accounts.viewSettings },
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
-  { method: 'GET', path: '/home', config: Donations.home },
-  { method: 'GET', path: '/report', config: Donations.report },
-  { method: 'POST', path: '/donate', config: Donations.donate },
+  { method: 'GET', path: '/home', config: Tweets.home },
+  { method: 'GET', path: '/timeline', config: Tweets.timeline },
+  { method: 'POST', path: '/timeline', config: Tweets.delete },
+  { method: 'POST', path: '/tweet', config: Tweets.tweet },
 
   {
     method: 'GET',

@@ -22,9 +22,10 @@ server.register([require('inert'), require('vision'), require('hapi-auth-cookie'
     layout: true,
     isCached: false,
   });
+  server.route(require('./routes'));
   server.auth.strategy('standard', 'cookie', {
     password: 'secretpasswordnotrevealedtoanyone',
-    cookie: 'donation-cookie',
+    cookie: 'twitter-cookie',
     isSecure: false,
     ttl: 24 * 60 * 60 * 1000,
     redirectTo: '/login',
@@ -32,7 +33,6 @@ server.register([require('inert'), require('vision'), require('hapi-auth-cookie'
   server.auth.default({
     strategy: 'standard',
   });
-  server.route(require('./routes'));
 
   server.start((err) => {
     if (err) {
