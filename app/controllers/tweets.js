@@ -26,6 +26,7 @@ exports.tweet = {
       var month = x.getMonth();
       month = month + 1;
       var day = x.getDate();
+      tweet.email = userEmail;
       tweet.timeUI = day + '/' + month + '/' + year;
       console.log(tweet);
       tweet.save().then(newTweet => {
@@ -34,12 +35,13 @@ exports.tweet = {
     });
   },
 };
-exports.timeline = {
+exports.personalTimeline = {
 
   handler: function (request, reply) {
-    Tweet.find({}).then(allTweets => {
+    var userEmail = request.auth.credentials.loggedInUser;
+    Tweet.find({ email: userEmail}).then(allTweets => {
       reply.view('timeline', {
-        title: 'All Tweets',
+        title: 'All your Tweets',
         tweets: allTweets,
       });
     }).catch(err => {

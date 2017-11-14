@@ -14,7 +14,7 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
 
   { method: 'GET', path: '/home', config: Tweets.home },
-  { method: 'GET', path: '/timeline', config: Tweets.timeline },
+  { method: 'GET', path: '/timeline', config: Tweets.personalTimeline },
   { method: 'POST', path: '/timeline', config: Tweets.delete },
   { method: 'POST', path: '/tweet', config: Tweets.tweet },
 
