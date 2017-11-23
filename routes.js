@@ -12,9 +12,13 @@ module.exports = [
   { method: 'GET', path: '/logout', config: Accounts.logout },
   { method: 'GET', path: '/settings', config: Accounts.viewSettings },
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
+  { method: 'GET', path: '/search', config: Accounts.search },
+  { method: 'POST', path: '/search', config: Accounts.follow },
+  { method: 'POST', path: '/otherTimeline', config: Accounts.otherTimeline },
+  { method: 'GET', path: '/timeline', config: Accounts.personalTimeline },
+
 
   { method: 'GET', path: '/home', config: Tweets.home },
-  { method: 'GET', path: '/timeline', config: Tweets.personalTimeline },
   { method: 'POST', path: '/timeline', config: Tweets.delete },
   { method: 'POST', path: '/tweet', config: Tweets.tweet },
 

@@ -2,11 +2,12 @@
 
 const User = require('../models/user');
 const Joi = require('joi');
+const Tweet = require('../models/tweet');
 
 exports.main = {
   auth: false,
   handler: function (request, reply) {
-    reply.view('main', {title: 'Welcome to Twitter'});
+    reply.view('main', { title: 'Welcome to Twitter' });
   },
 
 };
@@ -15,7 +16,7 @@ exports.signup = {
 
   auth: false,
   handler: function (request, reply) {
-    reply.view('signup', { title: 'Sign up'});
+    reply.view('signup', { title: 'Sign up' });
   },
 
 };
@@ -54,7 +55,7 @@ exports.register = {
 
   handler: function (request, reply) {
     const user = new User(request.payload);
-
+    user.following[0] = user.email;
     user.save().then(newUser => {
       reply.redirect('/login');
     }).catch(err => {
@@ -136,8 +137,8 @@ exports.updateSettings = {
     },
 
     failAction: function (request, reply, source, error) {
-      reply.view('signup', {
-        title: 'Sign up error',
+      reply.view('settings', {
+        title: 'Edit Account Settings',
         errors: error.data.details,
       }).code(400);
     },
@@ -146,7 +147,7 @@ exports.updateSettings = {
 
   handler: function (request, reply) {
     const editedUser = request.payload;
-    User.findOne({email: request.auth.credentials.loggedInUser}).then(user => {
+    User.findOne({ email: request.auth.credentials.loggedInUser }).then(user => {
       user.firstName = editedUser.firstName;
       user.lastName = editedUser.lastName;
       user.email = editedUser.email;
@@ -157,7 +158,85 @@ exports.updateSettings = {
         loggedIn: true,
         loggedInUser: user.email,
       });
-      reply.view('settings', {title: 'Edit Account Settings', user: user});
+      reply.view('settings', { title: 'Edit Account Settings', user: user });
     });
   },
+};
+
+exports.search = {
+
+  handler: function (request, reply) {
+    var userEmail = request.auth.credentials.loggedInUser;
+    User.find({}).then(allUsers => {
+      reply.view('search', { title: 'Search User', users: allUsers });
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+};
+
+exports.follow = {
+
+  handler: function (request, reply) {
+    var userEmail = request.auth.credentials.loggedInUser;
+    var data = request.payload;
+    User.findOne({ email: userEmail }).then(foundUser => { //eintrag für Following
+              var x = foundUser.following.length;
+              foundUser.following.set(x, data.selectedUserMail);
+              foundUser.markModified(foundUser.following);
+              return foundUser.save();
+            }).then(User.findOne({ email: data.selectedUserMail }).then(selectedUser => { //eintrag für followers
+              var x = selectedUser.followers.length;
+              selectedUser.followers.set(x, userEmail);
+              selectedUser.markModified(selectedUser.following);
+              return selectedUser.save();
+            })).then(foundUser => {reply.view('search', { title: 'Search User',});
+    });
+  },
+};
+
+exports.personalTimeline = {
+
+  handler: function (request, reply) {
+    var userEmail = request.auth.credentials.loggedInUser;
+    Tweet.find({ email: userEmail }).then(allTweets => {
+      User.findOne({ email: userEmail }).then(foundUser => {
+        var fullName = foundUser.firstName + ' ' + foundUser.lastName;
+        reply.view('timeline', {
+          title: 'All your Tweets',
+          tweets: allTweets,
+          followers: foundUser.followers,
+          following: foundUser.following,
+          userFullName: fullName,
+          email: foundUser.email,
+        });
+      });
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+
+};
+
+exports.otherTimeline = {
+
+  handler: function (request, reply) {
+    var data = request.payload;
+    Tweet.find({ email: data.selectedUserMail }).then(allTweets => {
+      User.findOne({ email: data.selectedUserMail }).then(foundUser => {
+        var fullName = foundUser.firstName + ' ' + foundUser.lastName;
+        reply.view('otherTimeline', {
+          title: 'All your Tweets',
+          tweets: allTweets,
+          followers: foundUser.followers,
+          following: foundUser.following,
+          userFullName: fullName,
+          email: foundUser.email,
+        });
+      });
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+
 };

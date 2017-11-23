@@ -1,4 +1,4 @@
-{{> mainmenu _id="timeline"}}
+{{> mainmenu _id="search"}}
 <section class="ui raised segment">
     <h1> Profile</h1>
     <h4> Name: {{ userFullName }}</h4>
@@ -7,12 +7,11 @@
     <div class="ui grid">
 
         <aside class="ui eight wide column">
-            {{> tweet }}
-            <h3> All your Tweets </h3>
+            <h3> All Tweets </h3>
             {{> tweetlist }}
         </aside>
         <aside class="ui eight wide column">
-        {{> follow}}
+            {{> follow}}
         </aside>
     </div>
 </section>

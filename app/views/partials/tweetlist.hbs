@@ -1,32 +1,11 @@
-<section class="ui raised segment">
-    <div class="ui grid">
-        <aside class="ui five wide column">
-        </aside>
-        <aside class="ui six wide column">
-            <div class="ui grid ">
-                <div class="ui form ten wide column">
-
-                    <form action="/tweet" method="POST">
-
-                        <h3> Write a Tweet </h3>
-                        <div class="ui text">
-                            <input type="text" name="tweetText">
-                        </div>
-                        <p></p>
-                        <button class="ui blue submit button">Publish</button>
-                    </form>
-
-                </div>
-                <aside class="six wide column">
-                </aside>
-            </div>
-            <h3> All your Tweets </h3>
+ <div class="ui grid">
+        <aside class="ui column">
         {{#each tweets}}
             <section class="ui raised segment">
                 <form id="dT" action="/timeline" method="POST">
                 <div class="ui grid">
                     <aside class="ui twelve wide column">{{firstName}} {{lastName}}</aside>
-                    <aside class="ui one wide column">{{timeUI}}</aside>
+                    <aside class="ui four wide column">{{timeUI}}</aside>
                 <p></p>
                 </div>
                 <p></p>
@@ -44,4 +23,3 @@
         {{/each}}
         </aside>
     </div>
-</section>

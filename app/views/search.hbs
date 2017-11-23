@@ -1,0 +1,40 @@
+{{> mainmenu _id="search"}}
+
+<article class="column">
+    <h3>All registered Twitter Users</h3>
+    <h4>Click on them to take a look at their Profile</h4>
+        <div class="ui grid">
+            {{#each users}}
+                <aside class="ui two wide column">
+
+                        <form action="/search" method="POST">
+                            <td><button class="ui blue active button">
+                                <i class="black user icon"></i>
+                                Follow
+                            </button>
+                            <input type="hidden" value={{email}} name="selectedUserMail" />
+                        </form>
+
+                </aside>
+                <aside class="ui two wide column">
+                    <form action="/otherTimeline" method="POST">
+                        <button class="ui button">
+                            Profile
+                        </button>
+                        <input type="hidden" value={{email}} name="selectedUserMail" />
+                    </form>
+                </aside>
+                <aside class="ui ten wide column">
+                    <div class="center aligned two column row"> <div class="column">
+                        <div class="ui segment">
+
+                            {{firstName}} {{lastName}}
+                        </div>
+                    </div>
+                </aside>
+
+                <p></p>
+            {{/each}}
+        </div>
+    </tfoot>
+</article>

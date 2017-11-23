@@ -1,5 +1,4 @@
 'use strict';
-const dateFormat = require('dateformat');
 const Tweet = require('../models/tweet');
 const User = require('../models/user');
 
@@ -35,21 +34,7 @@ exports.tweet = {
     });
   },
 };
-exports.personalTimeline = {
 
-  handler: function (request, reply) {
-    var userEmail = request.auth.credentials.loggedInUser;
-    Tweet.find({ email: userEmail}).then(allTweets => {
-      reply.view('timeline', {
-        title: 'All your Tweets',
-        tweets: allTweets,
-      });
-    }).catch(err => {
-      reply.redirect('/');
-    });
-  },
-
-};
 
 exports.delete = {
   handler: function (request, reply) {
