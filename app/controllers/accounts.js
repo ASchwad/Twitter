@@ -1,5 +1,4 @@
 'use strict';
-
 const User = require('../models/user');
 const Joi = require('joi');
 const Tweet = require('../models/tweet');
@@ -233,6 +232,22 @@ exports.otherTimeline = {
           userFullName: fullName,
           email: foundUser.email,
         });
+      });
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+
+};
+
+exports.globalTimeline = {
+
+  handler: function (request, reply) {
+    var data = request.payload;
+    Tweet.find().then(allTweets => {
+      reply.view('globalTimeline', {
+        title: 'All your Tweets',
+        tweets: allTweets,
       });
     }).catch(err => {
       reply.redirect('/');
