@@ -1,18 +1,21 @@
- <div class="ui grid">
-        <aside class="ui column">
+<div class="ui relaxed grid">
+    <aside class="ui eight wide column">
         {{#each tweets}}
+            <aside class="ui row">
             <section class="ui raised segment">
-               <div class="ui grid">
-                    <aside class="ui eleven wide column">{{firstName}} {{lastName}}</aside>
-                    <aside class="ui five wide column">{{timeUI}}</aside>
-                <p></p>
+               <div class="ui left aligned grid">
+                   <div class="column">
+                       <aside class="column">{{firstName}} {{lastName}}</aside>
+                       <aside class="column">{{timeUI}}</aside>
+                   </div>
                 </div>
                 <p></p>
-                <div class="ui grid">
-                    <aside class="ui twelve wide column">{{tweetText}}</aside>
+                <p></p>
+                <div class="ui inverted divider"></div>
+
+                <aside class="ui column">{{tweetText}}</aside>
                     <input type="hidden" value={{_id}} name="Object_id" />
-                </div>
             </section>
         {{/each}}
-        </aside>
+    </aside>
  </div>
