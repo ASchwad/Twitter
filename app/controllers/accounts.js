@@ -177,19 +177,29 @@ exports.search = {
 exports.follow = {
 
   handler: function (request, reply) {
-    var userEmail = request.auth.credentials.loggedInUser;
-    var data = request.payload;
+    let userEmail = request.auth.credentials.loggedInUser;
+    let data = request.payload;
     User.findOne({ email: userEmail }).then(foundUser => { //eintrag für Following
               var x = foundUser.following.length;
+              for (let i = 0; i < x; i++) {
+                if (foundUser.following[i].localeCompare(data.selectedUserMail)== 0) {
+                  return null;
+                }
+              }
               foundUser.following.set(x, data.selectedUserMail);
               foundUser.markModified(foundUser.following);
               return foundUser.save();
             }).then(User.findOne({ email: data.selectedUserMail }).then(selectedUser => { //eintrag für followers
               var x = selectedUser.followers.length;
+              for (let i = 0; i < x; i++) {
+                if (selectedUser.followers[i].localeCompare(userEmail)== 0) {
+                  return null;
+                }
+              }
               selectedUser.followers.set(x, userEmail);
               selectedUser.markModified(selectedUser.following);
               return selectedUser.save();
-            })).then(foundUser => {reply.view('search', { title: 'Search User',});
+            })).then(foundUser => {reply.view('search', { title: 'Search User', });
     });
   },
 };
