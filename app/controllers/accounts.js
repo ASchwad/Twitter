@@ -182,24 +182,26 @@ exports.follow = {
     User.findOne({ email: userEmail }).then(foundUser => { //eintrag für Following
               var x = foundUser.following.length;
               for (let i = 0; i < x; i++) {
-                if (foundUser.following[i].localeCompare(data.selectedUserMail)== 0) {
+                if (foundUser.following[i].localeCompare(data.selectedUserMail) == 0) {
                   return null;
                 }
               }
+
               foundUser.following.set(x, data.selectedUserMail);
               foundUser.markModified(foundUser.following);
               return foundUser.save();
             }).then(User.findOne({ email: data.selectedUserMail }).then(selectedUser => { //eintrag für followers
               var x = selectedUser.followers.length;
               for (let i = 0; i < x; i++) {
-                if (selectedUser.followers[i].localeCompare(userEmail)== 0) {
+                if (selectedUser.followers[i].localeCompare(userEmail) == 0) {
                   return null;
                 }
               }
+
               selectedUser.followers.set(x, userEmail);
               selectedUser.markModified(selectedUser.following);
               return selectedUser.save();
-            })).then(foundUser => {reply.view('search', { title: 'Search User', });
+            })).then(foundUser => {reply.redirect('/search', { title: 'Search User', });
     });
   },
 };
@@ -256,7 +258,7 @@ exports.globalTimeline = {
     var data = request.payload;
     Tweet.find().then(allTweets => {
       reply.view('globalTimeline', {
-        title: 'All your Tweets',
+        title: 'Global Timeline',
         tweets: allTweets,
       });
     }).catch(err => {
@@ -265,3 +267,37 @@ exports.globalTimeline = {
   },
 
 };
+
+exports.aggregatedTimeline = {
+
+  handler: function (request, reply) {
+    var userEmail = request.auth.credentials.loggedInUser;
+    Tweet.find().then(allTweets => {
+      User.findOne({ email: userEmail }).then(foundUser => { //sieht zu jedem Tweet nach, ob dem Verfasser des Tweets vom eingeloggtem Nutzer gefolgt wird
+          for (let i = 0; i < allTweets.length; i++) {
+            var elementGefunden;
+            for (let x = 0; x < foundUser.following.length; x++) {
+              elementGefunden = new Boolean(false);
+              var tweetCreator = allTweets[i].email;
+              if (tweetCreator.localeCompare(foundUser.following[x]) == 0) {
+                elementGefunden = true;
+                break;
+              }
+            }
+
+            if (elementGefunden == false) {
+              delete allTweets[i];
+            }
+          }
+        });
+      reply.view('aggregatedTimeline', {
+        title: 'Your Network',
+        tweets: allTweets,
+      });
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+
+};
+

@@ -32,19 +32,22 @@
       "timeUI": "05/03/2013",
       "firstName": "Bart",
       "lastName": "Simpson",
+      "email": "bart@simpson.com",
       "tweetText": "LOOOOOL"
     },
     "two": {
       "timeUI": "07/05/2015",
       "firstName": "Simon",
       "lastName": "Gerber",
+      "email": "asdf@simpson.com",
       "tweetText": "Pls"
     },
     "three": {
       "timeUI": "03/01/2016",
       "firstName": "Hans",
       "lastName": "Dampf",
-      "tweetText": "asdfasdf"
+      "tweetText": "asdfasdf",
+      "email": "b435art@simpson.com"
     }
   }
 }
