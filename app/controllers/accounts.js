@@ -213,6 +213,19 @@ exports.personalTimeline = {
     Tweet.find({ email: userEmail }).then(allTweets => {
       User.findOne({ email: userEmail }).then(foundUser => {
         var fullName = foundUser.firstName + ' ' + foundUser.lastName;
+
+        for(let i = 0; i < foundUser.followers.length; i++){ // durchgehen der Follower, nachschlagen der Namen und abspeichern im Array statt email
+          User.findOne({ email : foundUser.followers[i]}).then(currentFollower => {
+            foundUser.followers[i] = ' ' + currentFollower.firstName + ' ' + currentFollower.lastName;
+          });
+        };
+
+        for(let i = 0; i < foundUser.following.length; i++){
+          User.findOne({ email : foundUser.following[i]}).then(currentFollowing => {
+            foundUser.following[i] = ' ' + currentFollowing.firstName + ' ' + currentFollowing.lastName;
+          });
+        };
+
         reply.view('timeline', {
           title: 'All your Tweets',
           tweets: allTweets,
@@ -236,8 +249,20 @@ exports.otherTimeline = {
     Tweet.find({ email: data.selectedUserMail }).then(allTweets => {
       User.findOne({ email: data.selectedUserMail }).then(foundUser => {
         var fullName = foundUser.firstName + ' ' + foundUser.lastName;
+        for(let i = 0; i < foundUser.followers.length; i++){ // durchgehen der Follower, nachschlagen der Namen und abspeichern im Array statt email
+          User.findOne({ email : foundUser.followers[i]}).then(currentFollower => {
+            foundUser.followers[i] = ' ' + currentFollower.firstName + ' ' + currentFollower.lastName;
+          });
+        };
+
+        for(let i = 0; i < foundUser.following.length; i++){
+          User.findOne({ email : foundUser.following[i]}).then(currentFollowing => {
+            foundUser.following[i] = ' ' + currentFollowing.firstName + ' ' + currentFollowing.lastName;
+          });
+        };
+
         reply.view('otherTimeline', {
-          title: 'All your Tweets',
+          title: 'Discover',
           tweets: allTweets,
           followers: foundUser.followers,
           following: foundUser.following,
