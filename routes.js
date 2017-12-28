@@ -14,6 +14,7 @@ module.exports = [
   { method: 'POST', path: '/settings', config: Accounts.updateSettings },
   { method: 'GET', path: '/search', config: Accounts.search },
   { method: 'POST', path: '/search', config: Accounts.follow },
+  { method: 'POST', path: '/deFollow', config: Accounts.deFollow },
   { method: 'GET', path: '/globalTimeline', config: Accounts.globalTimeline },
   { method: 'GET', path: '/aggregatedTimeline', config: Accounts.aggregatedTimeline },
   { method: 'POST', path: '/otherTimeline', config: Accounts.otherTimeline },

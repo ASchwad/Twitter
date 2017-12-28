@@ -166,7 +166,14 @@ exports.search = {
 
   handler: function (request, reply) {
     var userEmail = request.auth.credentials.loggedInUser;
+
     User.find({}).then(allUsers => {
+      for (let x = 0; x < allUsers.length; x++) {
+        if (allUsers[x].email.localeCompare(userEmail) == 0) {
+          delete allUsers[x];
+        }
+      }
+
       reply.view('search', { title: 'Search User', users: allUsers });
     }).catch(err => {
       reply.redirect('/');
@@ -201,7 +208,48 @@ exports.follow = {
               selectedUser.followers.set(x, userEmail);
               selectedUser.markModified(selectedUser.following);
               return selectedUser.save();
-            })).then(foundUser => {reply.redirect('/search', { title: 'Search User', });
+            })).then(foundUser => {
+              reply.redirect('/search', { title: 'Search User', });
+            });
+  },
+};
+
+exports.deFollow = {
+
+  handler: function (request, reply) {
+    let userEmail = request.auth.credentials.loggedInUser;
+    let data = request.payload;
+    User.findOne({ email: userEmail }).then(foundUser => { //wenn enthalten, löschen
+      var x = foundUser.following.length;
+      for (let i = 0; i < x; i++) {
+        if (foundUser.following[i].localeCompare(data.selectedUserMail) == 0) {
+
+          foundUser.following.splice(i, 1);
+          foundUser.markModified(foundUser.following);
+          return foundUser.save((error3) => {
+            if (error3) {
+              return handleError(error3);
+            }
+
+            console.log('Successfully saved');
+          });
+        }
+      }
+
+      return null;
+    }).then(User.findOne({ email: data.selectedUserMail }).then(selectedUser => { //eintrag für followers
+      var x = selectedUser.followers.length;
+      for (let i = 0; i < x; i++) {
+        if (selectedUser.followers[i].localeCompare(userEmail) == 0) {
+          selectedUser.followers.splice(i, 1);
+          selectedUser.markModified(selectedUser.followers);
+          return selectedUser.save();
+        }
+      }
+
+      return null;
+    })).then(foundUser => {
+      reply.redirect('/search', { title: 'Search User', });
     });
   },
 };
@@ -214,14 +262,14 @@ exports.personalTimeline = {
       User.findOne({ email: userEmail }).then(foundUser => {
         var fullName = foundUser.firstName + ' ' + foundUser.lastName;
 
-        for(let i = 0; i < foundUser.followers.length; i++){ // durchgehen der Follower, nachschlagen der Namen und abspeichern im Array statt email
-          User.findOne({ email : foundUser.followers[i]}).then(currentFollower => {
+        for (let i = 0; i < foundUser.followers.length; i++) { // durchgehen der Follower, nachschlagen der Namen und abspeichern im Array statt email
+          User.findOne({ email: foundUser.followers[i] }).then(currentFollower => {
             foundUser.followers[i] = ' ' + currentFollower.firstName + ' ' + currentFollower.lastName;
           });
         };
 
-        for(let i = 0; i < foundUser.following.length; i++){
-          User.findOne({ email : foundUser.following[i]}).then(currentFollowing => {
+        for (let i = 0; i < foundUser.following.length; i++) {
+          User.findOne({ email: foundUser.following[i] }).then(currentFollowing => {
             foundUser.following[i] = ' ' + currentFollowing.firstName + ' ' + currentFollowing.lastName;
           });
         };
@@ -249,14 +297,14 @@ exports.otherTimeline = {
     Tweet.find({ email: data.selectedUserMail }).then(allTweets => {
       User.findOne({ email: data.selectedUserMail }).then(foundUser => {
         var fullName = foundUser.firstName + ' ' + foundUser.lastName;
-        for(let i = 0; i < foundUser.followers.length; i++){ // durchgehen der Follower, nachschlagen der Namen und abspeichern im Array statt email
-          User.findOne({ email : foundUser.followers[i]}).then(currentFollower => {
+        for (let i = 0; i < foundUser.followers.length; i++) { // durchgehen der Follower, nachschlagen der Namen und abspeichern im Array statt email
+          User.findOne({ email: foundUser.followers[i] }).then(currentFollower => {
             foundUser.followers[i] = ' ' + currentFollower.firstName + ' ' + currentFollower.lastName;
           });
         };
 
-        for(let i = 0; i < foundUser.following.length; i++){
-          User.findOne({ email : foundUser.following[i]}).then(currentFollowing => {
+        for (let i = 0; i < foundUser.following.length; i++) {
+          User.findOne({ email: foundUser.following[i] }).then(currentFollowing => {
             foundUser.following[i] = ' ' + currentFollowing.firstName + ' ' + currentFollowing.lastName;
           });
         };

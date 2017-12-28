@@ -1,6 +1,7 @@
 'use strict';
 const Tweet = require('../models/tweet');
 const User = require('../models/user');
+const Joi = require('joi');
 
 exports.home = {
 
@@ -11,6 +12,23 @@ exports.home = {
 };
 
 exports.tweet = {
+
+  validate: {
+    options: {
+      abortEarly: false,
+    },
+    payload: {
+      tweetText: Joi.string().required(),
+    },
+
+    failAction: function (request, reply, source, error) {
+      reply.redirect('/timeline', {
+        title: 'Insert Text to Tweet',
+        errors: error.data.details,
+      }).code(400);
+    },
+
+  },
 
   handler: function (request, reply) {
     var userEmail = request.auth.credentials.loggedInUser;
@@ -25,8 +43,12 @@ exports.tweet = {
       var month = x.getMonth();
       month = month + 1;
       var day = x.getDate();
+      var hours = x.getHours();
+      var minutes = x.getMinutes();
       tweet.email = userEmail;
-      tweet.timeUI = day + '/' + month + '/' + year;
+      tweet.timeUI = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
+
+
       console.log(tweet);
       tweet.save().then(newTweet => {
         reply.redirect('/timeline');

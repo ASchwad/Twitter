@@ -16,6 +16,18 @@
                         </form>
 
                 </aside>
+                <aside class="ui three wide column">
+
+                    <form action="/deFollow" method="POST">
+                        <td><button class="ui red active button">
+                            <i class="black remove icon"></i>
+                            DeFollow
+                        </button>
+                            <input type="hidden" value={{_id}} name="Object_id" />
+                            <input type="hidden" value={{email}} name="selectedUserMail" />
+                    </form>
+
+                </aside>
                 <aside class="ui two wide column">
                     <form action="/otherTimeline" method="POST">
                         <button class="ui button">
@@ -25,7 +37,7 @@
                         <input type="hidden" value={{email}} name="selectedUserMail" />
                     </form>
                 </aside>
-                <aside class="ui ten wide column">
+                <aside class="ui eight wide column">
                     <div class="center aligned two column row"> <div class="column">
                         <div class="ui segment">
 
