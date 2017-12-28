@@ -6,12 +6,12 @@
 
             <h3> Your Tweet </h3>
             <div class="ui text">
-                <input type="text" name="tweetText">
+                <input type="text" placeholder="Type here to tweet" name="tweetText" required>
             </div>
             <p></p>
             <button class="ui blue submit button">Publish</button>
         </form>
-
+        {{> formerror }}
     </div>
     <aside class="six wide column">
     </aside>

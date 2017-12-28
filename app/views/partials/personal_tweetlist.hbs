@@ -6,15 +6,15 @@
                 <div class="ui grid">
                     <aside class="ui twelve wide column">{{firstName}} {{lastName}}</aside>
                     <aside class="ui four wide column">{{timeUI}}</aside>
-                <p></p>
-                    <div class="ui divider"></div>
                 </div>
-                <p></p>
                 <div class="ui grid">
+                    <aside class="ui sixteen wide column">
+                        <div class="ui inverted divider"></div>
+                    </aside>
                     <aside class="ui twelve wide column">{{tweetText}}</aside>
                     <aside class="ui three wide column">
-                        <button class="ui button">
-                        <i class="trash icon"></i>
+                        <button class="ui red button">
+                        <i class="centered black trash icon"></i>
                         </button>
                     </aside>
                     <input type="hidden" value={{_id}} name="Object_id" />

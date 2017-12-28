@@ -157,7 +157,7 @@ exports.updateSettings = {
         loggedIn: true,
         loggedInUser: user.email,
       });
-      reply.view('settings', { title: 'Edit Account Settings', user: user });
+      reply.redirect('settings', { title: 'Edit Account Settings', user: user });
     });
   },
 };

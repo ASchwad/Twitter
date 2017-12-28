@@ -18,7 +18,7 @@ exports.tweet = {
       abortEarly: false,
     },
     payload: {
-      tweetText: Joi.string().required(),
+      tweetText: Joi.string().min(1).max(150),
     },
 
     failAction: function (request, reply, source, error) {
@@ -46,8 +46,11 @@ exports.tweet = {
       var hours = x.getHours();
       var minutes = x.getMinutes();
       tweet.email = userEmail;
-      tweet.timeUI = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
-
+      if(minutes<10){
+        tweet.timeUI = day + '/' + month + '/' + year + ' ' + hours + ':0' + minutes;
+      }else{
+        tweet.timeUI = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
+      };
 
       console.log(tweet);
       tweet.save().then(newTweet => {
