@@ -161,7 +161,7 @@ exports.updateSettings = {
     });
   },
 };
-
+//anzeigen aller User außer eingeloggtem User
 exports.search = {
 
   handler: function (request, reply) {
@@ -186,6 +186,9 @@ exports.follow = {
   handler: function (request, reply) {
     let userEmail = request.auth.credentials.loggedInUser;
     let data = request.payload;
+    $('.special.cards .image').dimmer({
+      on: 'hover'
+    });
     User.findOne({ email: userEmail }).then(foundUser => { //eintrag für Following
               var x = foundUser.following.length;
               for (let i = 0; i < x; i++) {
@@ -213,7 +216,8 @@ exports.follow = {
             });
   },
 };
-
+//verwenden von Splice da Datenbank sonst nicht speichert (schneidet den Index aus und verschiebt
+//die folgenden Indizies nach vorne
 exports.deFollow = {
 
   handler: function (request, reply) {

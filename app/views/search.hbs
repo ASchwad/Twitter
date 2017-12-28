@@ -3,51 +3,48 @@
 <article class="column">
     <h3>All registered Twitter Users</h3>
     <h4>Click on them to take a look at their Profile</h4>
-        <div class="ui grid">
-            {{#each users}}
-                <aside class="ui two wide column">
+    <div class="ui grid">
+        {{#each users}}
+            <div class="ui four wide column">
+                <div class="ui card">
+                    <div class="image">
+                        <form action="/otherTimeline" method="POST">
 
-                        <form action="/search" method="POST">
-                            <td><button class="ui blue active button">
-                                <i class="black heart icon"></i>
-                                Follow
-                            </button>
+                            <input type="image" src="/images/homer2.png" class="ui image" alt="Submit">
                             <input type="hidden" value={{email}} name="selectedUserMail" />
                         </form>
-
-                </aside>
-                <aside class="ui three wide column">
-
-                    <form action="/deFollow" method="POST">
-                        <td><button class="ui red active button">
-                            <i class="black remove icon"></i>
-                            DeFollow
-                        </button>
-                            <input type="hidden" value={{_id}} name="Object_id" />
-                            <input type="hidden" value={{email}} name="selectedUserMail" />
-                    </form>
-
-                </aside>
-                <aside class="ui two wide column">
-                    <form action="/otherTimeline" method="POST">
-                        <button class="ui button">
-                            <i class="black user icon"></i>
-                            Profile
-                        </button>
-                        <input type="hidden" value={{email}} name="selectedUserMail" />
-                    </form>
-                </aside>
-                <aside class="ui eight wide column">
-                    <div class="center aligned two column row"> <div class="column">
-                        <div class="ui segment">
-
-                            {{firstName}} {{lastName}}
-                        </div>
                     </div>
-                </aside>
+                    <div class="content">
 
-                <p></p>
-            {{/each}}
-        </div>
+                        <h4> {{firstName}} {{lastName}}</h4>
+                    </div>
+                    <div class="description">
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt</p>
+                    </div>
+                    <div class="extra content">
+                                <span class="left floated">
+                                <form action="/search" method="POST">
+                                    <td><button class="ui small blue active button">
+                                        <i class="black heart icon"></i>
+                                        Follow
+                                    </button>
+                                        <input type="hidden" value={{email}} name="selectedUserMail" />
+                                </form>
+                                </span>
+                        <span class="right floated">
+                                    <form action="/deFollow" method="POST">
+                                    <td><button class="ui small red active button">
+                                        <i class="black remove icon"></i>
+                                        Unfollow
+                                    </button>
+                                        <input type="hidden" value={{email}} name="selectedUserMail" />
+                                </form>
+                                </span>
+                    </div>
+                </div>
+            </div>
+
+        {{/each}}
+    </div>
     </tfoot>
 </article>
