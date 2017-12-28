@@ -186,9 +186,6 @@ exports.follow = {
   handler: function (request, reply) {
     let userEmail = request.auth.credentials.loggedInUser;
     let data = request.payload;
-    $('.special.cards .image').dimmer({
-      on: 'hover'
-    });
     User.findOne({ email: userEmail }).then(foundUser => { //eintrag für Following
               var x = foundUser.following.length;
               for (let i = 0; i < x; i++) {
@@ -230,13 +227,7 @@ exports.deFollow = {
 
           foundUser.following.splice(i, 1);
           foundUser.markModified(foundUser.following);
-          return foundUser.save((error3) => {
-            if (error3) {
-              return handleError(error3);
-            }
-
-            console.log('Successfully saved');
-          });
+          return foundUser.save();
         }
       }
 
