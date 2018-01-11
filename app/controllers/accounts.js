@@ -29,6 +29,15 @@ exports.login = {
 
 };
 
+exports.admin = {
+
+  auth: false,
+  handler: function (request, reply) {
+    reply.view('Admin', { title: 'Login as Admin' });
+  },
+
+};
+
 exports.register = {
   auth: false,
 
@@ -102,6 +111,46 @@ exports.authenticate = {
   },
 
 };
+
+exports.adminauthenticate = {
+  auth: false,
+
+  validate: { //validate input errors (Blank fields or Email formatting)
+    options: {
+      abortEarly: false,
+    },
+    payload: {
+      email: Joi.string().email().required(),
+      password: Joi.string().required(),
+    },
+
+    failAction: function (request, reply, source, error) {
+      reply.view('login', {
+        title: 'Sign up error',
+        errors: error.data.details,
+      }).code(400);
+    },
+
+  },
+  handler: function (request, reply) {
+    const user = request.payload;
+    User.findOne({ email: user.email }).then(foundUser => {
+      if (foundUser && foundUser.password === user.password && foundUser.admin === true) {
+        request.cookieAuth.set({
+          loggedIn: true,
+          loggedInUser: user.email,
+        });
+        reply.redirect('/timeline');
+      } else {
+        reply.redirect('signup');
+      }
+    }).catch(err => {
+      reply.redirect('/');
+    });
+  },
+
+};
+
 
 exports.logout = {
   auth: false,

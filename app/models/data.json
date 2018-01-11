@@ -7,7 +7,8 @@
       "email": "homer@simpson.com",
       "password": "secret",
       "followers": "homer@simpson.com",
-      "following": "homer@simpson.com"
+      "following": "homer@simpson.com",
+      "admin": false
     },
     "marge": {
       "firstName": "Marge",
@@ -15,7 +16,8 @@
       "email": "marge@simpson.com",
       "password": "secret",
       "followers": "marge@simpson.com",
-      "following": "marge@simpson.com"
+      "following": "marge@simpson.com",
+      "admin": false
     },
     "bart": {
       "firstName": "Bart",
@@ -23,7 +25,17 @@
       "email": "bart@simpson.com",
       "password": "secret",
       "followers": "bart@simpson.com",
-      "following": "bart@simpson.com"
+      "following": "bart@simpson.com",
+      "admin": false
+    },
+    "Admin": {
+      "firstName": "Max",
+      "lastName": "Mustermann",
+      "email": "admin@twitter.com",
+      "password": "secret",
+      "followers": "bart@simpson.com",
+      "following": "bart@simpson.com",
+      "admin": true
     }
   },
   "tweets": {

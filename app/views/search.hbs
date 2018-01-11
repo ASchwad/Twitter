@@ -7,10 +7,10 @@
         {{#each users}}
             <div class="ui four wide column">
                 <div class="ui card">
-                    <div class="image">
+                    <div class="center aligned image">
                         <form action="/otherTimeline" method="POST">
 
-                            <input type="image" src="/images/homer2.png" class="ui image" alt="Submit">
+                            <input type="image" src="/images/homer2.png" class="ui small image" alt="Submit">
                             <input type="hidden" value={{email}} name="selectedUserMail" />
                         </form>
                     </div>
@@ -23,10 +23,10 @@
                                 <form action="/search" method="POST">
                                     <td><button class="ui small blue active button">
                                         <i class="black heart icon"></i>
-                                        Follow
-                                    </button>
+                                        Follow</button>
                                         <input type="hidden" value={{email}} name="selectedUserMail" />
                                 </form>
+
                                 </span>
                         <span class="right floated">
                                     <form action="/deFollow" method="POST">
@@ -43,5 +43,5 @@
 
         {{/each}}
     </div>
-    </tfoot>
+
 </article>

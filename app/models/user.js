@@ -9,6 +9,7 @@ const userSchema = mongoose.Schema({
   password: String,
   followers: Array,
   following: Array,
+  admin: Boolean,
 });
 
 const User = mongoose.model('User', userSchema);
