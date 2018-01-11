@@ -33,9 +33,54 @@ exports.admin = {
 
   auth: false,
   handler: function (request, reply) {
-    reply.view('Admin', { title: 'Login as Admin' });
+    reply.view('adminLogin', { title: 'Login as Admin' });
   },
 
+};
+
+exports.adminspace = {
+
+  handler: function (request, reply) {
+
+    var userEmail = request.auth.credentials.loggedInUser;
+
+    User.find({}).then(allUsers => {
+      for (let x = 0; x < allUsers.length; x++) {
+        if (allUsers[x].email.localeCompare(userEmail) == 0) {
+          delete allUsers[x];
+        }
+      }
+      Tweet.find().then(allTweets => {
+        reply.view('adminspace', {
+          title: 'Admin Space',
+          users: allUsers,
+          numberUsers: allUsers.length - 1,
+          numberTweets: allTweets.length,
+        });
+      })
+    });
+  },
+};
+
+exports.deleteUser = {
+
+  handler: function (request, reply) {
+    const user = request.payload;
+    User.find({email: user.selectedUserMail}).then(foundUser => {
+
+      reply.redirect('/adminspace');
+    });
+  },
+};
+
+exports.deleteTweets = {
+
+  handler: function (request, reply) {
+    const user = request.payload;
+    Tweet.remove({email: user.selectedUserMail}).then(foundTweets => {
+      reply.redirect('/adminspace');
+    });
+  },
 };
 
 exports.register = {
@@ -140,9 +185,9 @@ exports.adminauthenticate = {
           loggedIn: true,
           loggedInUser: user.email,
         });
-        reply.redirect('/timeline');
+        reply.redirect('/adminspace');
       } else {
-        reply.redirect('signup');
+        reply.redirect('adminLogin');
       }
     }).catch(err => {
       reply.redirect('/');

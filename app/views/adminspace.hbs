@@ -1,0 +1,58 @@
+{{> adminmenu _id="adminspace"}}
+<h2>Statistics</h2>
+<div class="ui huge statistics">
+    <div class="statistic">
+        <div class="value">
+            <i class="address book icon"></i> {{numberUsers}}
+        </div>
+        <div class="label">
+            Members
+        </div>
+    </div>
+    <div class="statistic">
+        <div class="value">
+            <i class="comments icon"></i> {{numberTweets}}
+        </div>
+        <div class="label">
+            Tweets
+        </div>
+    </div>
+</div>
+<h2>Manage Users</h2>
+<div class="ui grid">
+    {{#each users}}
+        <div class="ui four wide column">
+            <div class="ui card">
+                <div class="center aligned image">
+                        <input type="image" src="/images/homer2.png" class="ui small image">
+                </div>
+                <div class="content">
+                    <h4> {{firstName}} {{lastName}}</h4>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt</p>
+                </div>
+                <div class="extra content">
+                                <span class="left floated">
+                                <form action="/deleteTweets" method="POST">
+                                    <td><button class="ui mini blue active button">
+                                        <i class="black remove icon"></i>
+                                        Delete Tweets</button>
+                                        <input type="hidden" value={{email}} name="selectedUserMail" />
+                                </form>
+
+                                </span>
+                    <span class="right floated">
+                                    <form action="/deleteUser" method="POST">
+                                    <td><button class="ui mini red active button">
+                                        <i class="black remove icon"></i>
+                                        Delete User
+                                    </button>
+                                        <input type="hidden" value={{email}} name="selectedUserMail" />
+                                </form>
+                                </span>
+                </div>
+            </div>
+        </div>
+
+    {{/each}}
+</div>
+
