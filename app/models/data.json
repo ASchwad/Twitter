@@ -6,8 +6,53 @@
       "lastName": "Simpson",
       "email": "homer@simpson.com",
       "password": "secret",
-      "followers": "homer@simpson.com",
-      "following": "homer@simpson.com",
+      "followers": ["homer@simpson.com", "marge@simpson.com", "bob@simpson.com", "maggy@simpson.com", "moe@simpson.com", "barney@simpson.com"],
+      "following": ["homer@simpson.com", "marge@simpson.com", "bart@simpson.com"],
+      "admin": false
+    },
+    "Simon": {
+      "firstName": "Simon",
+      "lastName": "Mirdoch",
+      "email": "simon@simpson.com",
+      "password": "secret",
+      "followers": ["simon@simpson.com"],
+      "following": ["barney@simpson.com", "simon@simpson.com", "bart@simpson.com"],
+      "admin": false
+    },
+    "Barney": {
+      "firstName": "Barney",
+      "lastName": "Gumble",
+      "email": "barney@simpson.com",
+      "password": "secret",
+      "followers": ["simon@simpson.com", "moe@simpson.com"],
+      "following": ["homer@simpson.com", "moe@simpson.com", "barney@simpson.com"],
+      "admin": false
+    },
+    "Moe": {
+      "firstName": "Moe",
+      "lastName": "Sizzlack",
+      "email": "moe@simpson.com",
+      "password": "secret",
+      "followers": ["barney@simpson.com"],
+      "following": ["homer@simpson.com", "moe@simpson.com", "barney@simpson.com"],
+      "admin": false
+    },
+    "Maggy": {
+      "firstName": "Maggy",
+      "lastName": "Simpson",
+      "email": "maggy@simpson.com",
+      "password": "secret",
+      "followers": ["homer@simpson.com", "marge@simpson.com", "bart@simpson.com"],
+      "following": ["maggy@simpson.com", "marge@simpson.com", "homer@simpson.com"],
+      "admin": false
+    },
+    "Bob": {
+      "firstName": "Bob",
+      "lastName": "Tingletangle",
+      "email": "bob@simpson.com",
+      "password": "secret",
+      "followers": ["marge@simpson.com", "bob@simpson.com"],
+      "following": ["homer@simpson.com", "bob@simpson.com", "bart@simpson.com"],
       "admin": false
     },
     "marge": {
@@ -15,8 +60,8 @@
       "lastName": "Simpson",
       "email": "marge@simpson.com",
       "password": "secret",
-      "followers": "marge@simpson.com",
-      "following": "marge@simpson.com",
+      "followers": ["homer@simpson.com", "marge@simpson.com", "maggy@simpson.com"],
+      "following": ["homer@simpson.com", "marge@simpson.com", "maggy@simpson.com", "bob@simpson.com"],
       "admin": false
     },
     "bart": {
@@ -24,8 +69,8 @@
       "lastName": "Simpson",
       "email": "bart@simpson.com",
       "password": "secret",
-      "followers": "bart@simpson.com",
-      "following": "bart@simpson.com",
+      "followers": ["homer@simpson.com", "bart@simpson.com", "bob@simpson.com"],
+      "following": ["bart@simpson.com",  "maggy@simpson.com"],
       "admin": false
     },
     "Admin": {
@@ -33,8 +78,8 @@
       "lastName": "Mustermann",
       "email": "admin@twitter.com",
       "password": "secret",
-      "followers": "bart@simpson.com",
-      "following": "bart@simpson.com",
+      "followers": "admin@twitter.com",
+      "following": "admin@twitter.com",
       "admin": true
     }
   },
@@ -45,21 +90,91 @@
       "firstName": "Bart",
       "lastName": "Simpson",
       "email": "bart@simpson.com",
-      "tweetText": "LOOOOOL"
+      "tweetText": "Make Springfield great again"
     },
-    "two": {
-      "timeUI": "07/05/2015",
-      "firstName": "Simon",
-      "lastName": "Gerber",
-      "email": "asdf@simpson.com",
-      "tweetText": "Pls"
+    "1": {
+      "timeUI": "30/03/2013",
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "tweetText": "OMG TRUMP MADE IT"
     },
-    "three": {
-      "timeUI": "03/01/2016",
-      "firstName": "Hans",
-      "lastName": "Dampf",
-      "tweetText": "asdfasdf",
-      "email": "b435art@simpson.com"
-    }
+    "2": {
+      "timeUI": "05/04/2013",
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "tweetText": "Here we go!"
+    },
+    "3": {
+      "timeUI": "15/04/2013",
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "tweetText": "asfsafsaffff"
+    },
+    "4": {
+      "timeUI": "30/05/2013",
+      "firstName": "Bart",
+      "lastName": "Simpson",
+      "email": "bart@simpson.com",
+      "tweetText": "Hey folks, im on twitter now"
+    },
+    "5": {
+      "timeUI": "30/05/2013",
+      "firstName": "Homer",
+    "lastName": "Simpson",
+    "email": "homer@simpson.com",
+    "tweetText": "NO"
+    },
+    "6": {
+      "timeUI": "01/06/2013",
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "tweetText": "I love Marge"
+    },
+    "7": {
+      "timeUI": "30/07/2013",
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "tweetText": "At moes pub"
+    },
+    "8": {
+      "timeUI": "30/08/2013",
+      "firstName": "Homer",
+      "lastName": "Simpson",
+      "email": "homer@simpson.com",
+      "tweetText": "Please give me food"
+    },
+    "9": {
+      "timeUI": "31/09/2013",
+      "firstName": "Marge",
+      "lastName": "Simpson",
+    "email": "marge@simpson.com",
+    "tweetText": "I see what youre doing bart!!"
+    },
+    "10": {
+      "timeUI": "20/10/2013",
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "tweetText": "Stop it bart!!"
+    },
+    "11": {
+      "timeUI": "31/10/2013",
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "tweetText": "Thats enough bart!!"
+    },
+    "11": {
+      "timeUI": "31/10/2013",
+      "firstName": "Marge",
+      "lastName": "Simpson",
+      "email": "marge@simpson.com",
+      "tweetText": "Thats enough bart!!"
+    },
   }
 }
