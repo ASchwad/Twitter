@@ -11,8 +11,8 @@
       "admin": false
     },
     "Simon": {
-      "firstName": "Simon",
-      "lastName": "Mirdoch",
+      "firstName": "Kitty",
+      "lastName": "Snowball II",
       "email": "simon@simpson.com",
       "password": "secret",
       "followers": ["simon@simpson.com"],
@@ -169,12 +169,12 @@
       "email": "marge@simpson.com",
       "tweetText": "Thats enough bart!!"
     },
-    "11": {
+    "12": {
       "timeUI": "31/10/2013",
       "firstName": "Marge",
       "lastName": "Simpson",
       "email": "marge@simpson.com",
       "tweetText": "Thats enough bart!!"
-    },
+    }
   }
 }

@@ -15,14 +15,14 @@ mongoose.connection.on('connected', function () {
   console.log('Mongoose connected to ' + dbURI);
 
   //if (process.env.NODE_ENV != 'production') {
-    var seeder = require('mongoose-seeder');
-    const data = require('./data.json');
-    const Tweet = require('./tweet');
-    const User = require('./user');
-    seeder.seed(data, { dropDatabase: true, dropCollections: true }).then(dbData => {
-    }).catch(err => {
-      console.log(error);
-    });
+  var seeder = require('mongoose-seeder');
+  const data = require('./data.json');
+  const Tweet = require('./tweet');
+  const User = require('./user');
+  seeder.seed(data, { dropDatabase: true, dropCollections: true }).then(dbData => {
+  }).catch(err => {
+    console.log(error);
+  });
   //}
 });
 
