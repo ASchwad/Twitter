@@ -95,6 +95,7 @@ exports.register = {
       lastName: Joi.string().required(),
       email: Joi.string().email().required(),
       password: Joi.string().required(),
+      captcha: Joi.string().required(),
     },
 
     failAction: function (request, reply, source, error) {
