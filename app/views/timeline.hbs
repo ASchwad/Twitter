@@ -2,10 +2,10 @@
 <section class="ui raised segment">
     <h2>Your Profile</h2>
     <div class="ui grid">
-        <aside class="ui eight wide column">
+        <aside class="ui six wide column">
             {{> profilecard }}
         </aside>
-        <aside class="ui eight wide column">
+        <aside class="ui ten wide column">
             <row>
             <div class="ui huge statistics">
                 <div class="statistic">
@@ -34,15 +34,17 @@
                 </div>
             </div>
             </row>
-            <row>{{> tweet }}</row>
-            <row>{{> follow }}</row>
-        </aside>
-    </div>
-    <div class="ui grid">
-
-        <aside class="ui eight wide column">
-            <h3>Personal Timeline </h3>
-            {{> personal_tweetlist }}
+            <row>
+                {{> tweet }}
+            </row>
+            <row>
+                <br> {{> follow }}
+            </row>
+            <row>
+                <br>
+                <h3>Personal Timeline </h3>
+                {{> personal_tweetlist }}
+            </row>
         </aside>
     </div>
 </section>

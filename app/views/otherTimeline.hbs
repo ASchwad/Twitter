@@ -3,10 +3,10 @@
 
     <h2>Profile of {{ userFullName }}</h2>
     <div class="ui grid">
-        <aside class="ui eight wide column">
+        <aside class="ui six wide column">
             {{> profilecard }}
         </aside>
-        <aside class="ui eight wide column">
+        <aside class="ui ten wide column">
             <row>
             <div class="ui huge statistics">
                 <div class="statistic">
@@ -35,14 +35,12 @@
                 </div>
             </div>
             </row>
-            <row>{{> follow }}</row>
-        </aside>
-    </div>
-    <div class="ui grid">
-
-        <aside class="ui eight wide column">
-            <h3> All Tweets </h3>
-            {{> tweetlist }}
+            <row><br>{{> follow }}</row>
+            <row>
+                <br>
+                <h3>Personal Timeline </h3>
+                {{> personal_tweetlist }}
+            </row>
         </aside>
     </div>
 </section>
