@@ -1,17 +1,48 @@
 {{> mainmenu _id="search"}}
 <section class="ui raised segment">
-    <h1> Profile</h1>
-    <h4> Name: {{ userFullName }}</h4>
-    <h4> E-Mail: {{ email }}</h4>
 
+    <h2>Profile of {{ userFullName }}</h2>
+    <div class="ui grid">
+        <aside class="ui eight wide column">
+            {{> profilecard }}
+        </aside>
+        <aside class="ui eight wide column">
+            <row>
+            <div class="ui huge statistics">
+                <div class="statistic">
+                    <div class="value">
+                        <i class="user outline icon"></i> {{numberFollowing}}
+                    </div>
+                    <div class="label">
+                        Following
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        <i class="user icon"></i> {{numberFollower}}
+                    </div>
+                    <div class="label">
+                        Followers
+                    </div>
+                </div>
+                <div class="statistic">
+                    <div class="value">
+                        <i class="comments icon"></i> {{numberTweets}}
+                    </div>
+                    <div class="label">
+                        Tweets
+                    </div>
+                </div>
+            </div>
+            </row>
+            <row>{{> follow }}</row>
+        </aside>
+    </div>
     <div class="ui grid">
 
         <aside class="ui eight wide column">
             <h3> All Tweets </h3>
             {{> tweetlist }}
-        </aside>
-        <aside class="ui eight wide column">
-            {{> follow}}
         </aside>
     </div>
 </section>

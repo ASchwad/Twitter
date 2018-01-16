@@ -370,6 +370,9 @@ exports.personalTimeline = {
           following: foundUser.following,
           userFullName: fullName,
           email: foundUser.email,
+          numberTweets: allTweets.length,
+          numberFollower: foundUser.followers.length,
+          numberFollowing: foundUser.following.length,
         });
       });
     }).catch(err => {
@@ -405,6 +408,9 @@ exports.otherTimeline = {
           following: foundUser.following,
           userFullName: fullName,
           email: foundUser.email,
+          numberTweets: allTweets.length,
+          numberFollower: foundUser.followers.length,
+          numberFollowing: foundUser.following.length,
         });
       });
     }).catch(err => {
