@@ -1,5 +1,7 @@
 {{> welcomemenu }}
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <section class="ui raised segment">
   <div class="ui grid">
     <div class="ui eight wide column">
@@ -24,7 +26,8 @@
             <label>Password</label>
             <input type="password" name="password">
           </div>
-          <button class="ui blue submit button">Submit</button>
+            <div class="g-recaptcha" data-sitekey="6LcFCUEUAAAAACR1U3qmH8urMS7xzf7sDOgLt771"></div>
+            <button class="ui blue submit button">Submit</button>
         </form>
           {{> formerror }}
       </div>
