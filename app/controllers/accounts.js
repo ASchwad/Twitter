@@ -66,7 +66,7 @@ exports.deleteUser = {
 
   handler: function (request, reply) {
     const user = request.payload;
-    User.find({email: user.selectedUserMail}).then(foundUser => {
+    User.remove({email: user.selectedUserMail}).then(foundUser => {
 
       reply.redirect('/adminspace');
     });
