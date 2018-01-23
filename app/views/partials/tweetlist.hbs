@@ -12,8 +12,13 @@
                 <p></p>
                 <p></p>
                 <div class="ui inverted divider"></div>
-
                 <aside class="ui column">{{tweetText}}</aside>
+                <aside class="ui column"> </aside>
+                {{#if picture_src}}
+                    <div class="ui centered image">
+                        <img src="{{picture_src}}">
+                    </div>
+                {{/if}}
                     <input type="hidden" value={{_id}} name="Object_id" />
             </section>
         {{/each}}

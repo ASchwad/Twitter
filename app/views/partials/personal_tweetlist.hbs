@@ -11,7 +11,14 @@
                     <aside class="ui sixteen wide column">
                         <div class="ui inverted divider"></div>
                     </aside>
-                    <aside class="ui twelve wide column">{{tweetText}}</aside>
+                    <aside class="ui thirteen wide column">
+                        <aside class="ui column">{{tweetText}}</aside>
+                        {{#if picture_src}}
+                            <div class="ui centered image">
+                                <img src="{{picture_src}}">
+                            </div>
+                        {{/if}}
+                    </aside>
                     <aside class="ui three wide column">
                         <button class="ui red button">
                         <i class="centered black trash icon"></i>

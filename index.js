@@ -1,6 +1,7 @@
 'use strict';
 
 const Hapi = require('hapi');
+
 var server = new Hapi.Server();
 server.connection({ port: process.env.PORT || 4000 });
 
@@ -10,7 +11,6 @@ server.register([require('inert'), require('vision'), require('hapi-auth-cookie'
   if (err) {
     throw err;
   }
-
   server.views({
     engines: {
       hbs: require('handlebars'),

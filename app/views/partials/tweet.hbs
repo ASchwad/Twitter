@@ -1,9 +1,10 @@
 <section class="ui raised segment">
-        <form action="/tweet" method="POST">
+        <form action="/tweet" method="POST" enctype="multipart/form-data">
             <h3> Your Tweet </h3>
             <div class="ui huge input">
                 <input type="text" placeholder="Type here to tweet" name="tweetText" required>
             </div>
+            <input type="file" name="tweetImage">
             <p></p>
             <button class="ui blue submit button">Publish</button>
         </form>
