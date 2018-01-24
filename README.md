@@ -1,6 +1,6 @@
 # Twitter-Clone
 
-I developed a Twitter replica in the course "Building Modern Web Applications & Services with Node.js" (Prof. Eamonn de Leastar) during my information systems (B.Sc.)  at the OTH Regensburg.
+I developed a Twitter replica in the course "Building Modern Web Applications & Services with Node.js" (Prof. Eamonn de Leastar) during my information systems studies (B.Sc.)  at the OTH Regensburg.
 
 Submission Details:
 - Name: Alexander Schonenewald
