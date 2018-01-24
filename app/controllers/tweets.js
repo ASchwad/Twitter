@@ -7,9 +7,7 @@ const fs = require('fs');
 
 try {
   cloudinary.config({
-    cloud_name: "docguta73",
-    api_key: "547987414629893",
-    api_secret: "q7u1iVzoQibuMf_YX6-Dm4vKhYI",
+    /* INSERT ACCOUNT DETAILS HERE */
   });
 }
 catch (e) {
