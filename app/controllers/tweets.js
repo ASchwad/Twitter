@@ -46,6 +46,7 @@ exports.tweet = {
   },
 
   payload: {
+    maxBytes: 209715200,
     output: 'stream',
     allow: 'multipart/form-data', // important
   },
@@ -60,7 +61,12 @@ exports.tweet = {
           */
         console.log('Create new tweet with picture');
         var name =  data.tweetImage.hapi.filename;
-        var path = __dirname + '/uploads/' + name;
+        var dir = './tmp';
+
+        if (!fs.existsSync(dir)){
+          fs.mkdirSync(dir);
+        }
+        var path = dir + '/' + name;
         var file = fs.createWriteStream(path);
 
         file.on('error', function (err) {
