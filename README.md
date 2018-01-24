@@ -3,8 +3,8 @@
 I developed a Twitter replica in the course "Building Modern Web Applications & Services with Node.js" (Prof. Eamonn de Leastar) during my econmic computer science studies (B.Sc.)  at the OTH Regensburg.
 
 Submission Details:
-Name: Alexander Schonenewald
-Student ID: 3021781
+- Name: Alexander Schonenewald
+- Student ID: 3021781
 
 
 | Value     	| Login Data   	          |
